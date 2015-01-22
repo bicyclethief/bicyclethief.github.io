@@ -1,24 +1,30 @@
 body {
+  /*border*/: 1px solid green;
   font-family: Helvetica, arial, freesans, clean, sans-serif;
   color: #333;
+  padding-left: 20px;
+  background: #eee;
+}
+
+a {
+  color: #4183c4;
 }
 
 #post-title {
-  /*border: 1px solid green;*/
-  padding-left: 10px;
+  /*border*/: 1px solid green;
 }
 
 #subtitle {
-  /*border: 1px solid green;*/
-  padding-left: 10px;
+  /*border*/: 1px solid green;
 }
 
 #post-date {
-  /*border: 1px solid green;*/
-  padding-left: 10px;
+  /*border*/: 1px solid green;
+  color: #888;
 }
 
 #post-content {
-  /*border: 1px solid green;*/
-  padding-left: 10px;
+  /*border*/: 1px solid green;
+  width: 70%;
+  float: left;
 }
