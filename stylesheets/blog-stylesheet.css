@@ -3,11 +3,11 @@ body {
   font-family: Helvetica, arial, freesans, clean, sans-serif;
   color: #333;
   padding-left: 20px;
-  background: #eee;
+  /*background: #eee;*/
 }
 
 a {
-  color: #4183c4;
+  color: #3da1bf;
 }
 
 #post-title {
@@ -27,4 +27,26 @@ a {
   /*border*/: 1px solid green;
   width: 70%;
   float: left;
+}
+
+/* <---- post index CSS ----> */
+
+.post-index-container {
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.post-index-header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-index-body {
+
+}
+
+.post-index-link {
+  display: block;
+  color: #3da1bf;
+  margin: 10px 0 10px 0;
 }
