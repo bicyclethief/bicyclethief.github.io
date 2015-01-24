@@ -14,11 +14,13 @@ body {
   /*border: 1px solid blue;*/
   position: fixed;
   top: 0;
-  background-color: #e2e2e2;
+  left: 0;
+  background-color: #ffffff;
   width: 100%;
   height: 60px;
   border-bottom: 1px solid #aaaaaa;
   margin-bottom: 20px;
+  display: block;
 }
 
 #header-logo {
@@ -26,7 +28,7 @@ body {
   display: inline-block;
   font-size: 30px;
   font-weight: bold;
-  color: #404040;
+  color: #212121;
   margin-left: 60px;
   margin-top: 20px;
 }
@@ -42,9 +44,10 @@ body {
   margin: 30px;
   /*border: 1px solid yellow;*/
   font-size: 22px;
-  color: #888888;
+  color: #3da1bf;
   position: relative;
   top: 20px;
+  text-decoration: none;
 }
 
 #body-content {
@@ -53,6 +56,9 @@ body {
   width: 100%;
   height: 70%;
   margin: 70px auto;
+  font-size: 17px;
+  text-align: center;
+  padding-top: 30px;
 }
 
 #footer {
