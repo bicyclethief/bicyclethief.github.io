@@ -29,6 +29,11 @@ a {
   float: left;
 }
 
+code {
+  padding: 10px;
+  background-color: #cccccc;
+}
+
 /* <---- post index CSS ----> */
 
 .post-index-container {

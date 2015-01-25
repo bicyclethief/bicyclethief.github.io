@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <title>Block Bullies and Inline Friends</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+<main>
+<div id="post-title">
+  <h1>Block Bullies and Inline Friends</h1>
+</div>
+<div id="subtitle">
+  <h2>An Explanation of CSS display:block, display:inline, and display:inline-block</h2>
+</div>
+<div id="post-date">
+  <h4>Jan 24 2015</h4>
+</div>
+<div id="post-content">
+  <p>
+    Most of CSS is fairly straightforward to learn. Tweaking fonts and colors and sizes of boxes: easy. CSS positioning: not so straightforward. In fact, it can be damn frustrating. The properties of display, position, and float-- and their interaction between them-- is relatively complex. Even playing with the properties doesn't necessarily impart clear and total understanding. In this blog post, I hope to clear up some of the confusion surrounding display:block, display:inline, and display:inline-blocks. (For a far more complete explanation of CSS positioning, please consult these two excellent articles: <a href="http://kilianvalkhof.com/2008/css-xhtml/understanding-css-positioning-part-1/">Understanding CSS Positioning Part I</a> and <a href="http://kilianvalkhof.com/2008/css-xhtml/understanding-css-positioning-part-2/">Understanding CSS Positioning Part II</a>.)
+  </p>
+
+  <p>
+    Let's start with:
+    <pre><code>display: block;</code></pre>
+    An element with the above CSS rule will act like a bully. The element will prevent any other element from being on the same horizontal row, or "line". It will hog that thing up completely: the block bully! The element's width and height can be set by CSS, overriding any natural width or height set by its contents.
+  </p>
+
+  <p>Below is how 3 DIVs, all with display:block, behaves. Note that I have set the width larger than its content.</p>
+  <p><img src="../imgs/display_block.png" width="300" alt=""></p>
+
+  <p>
+    <pre><code>display: inline;</code></pre>
+    An element with the above CSS rule, on the other hand, plays nice, like a friend. It will sit next to other elements on the same horizontal row, or "line", provided it too is display:inline and there is enough width left. If there isn't enough width left on the horizontal row, the element will wrap to the next horizontal row.
+
+    The width and height are always set by its contents. An element with display:inline will ignore any dimensions specified in the CSS.
+  </p>
+
+  <p>Below is how 3 DIVs, all with display:inline, behaves. Note that the size of the DIVs conform to the content-- no more or less.</p>
+  <p><img src="../imgs/display_inline.png" width="300" alt=""></p>
+
+  <p>
+    <pre><code>display: inline-block;</code></pre>
+    An element with the above CSS rules is a combination of display:inline and display:block. Like display:inline, it will be friendly and sit next to other elements on the horizontal row, or "line". Like display:block, it size an be altered--width, height, margin, and padding can be explicitly set in CSS.
+  </p>
+
+  <p>Below is how 3 DIVs, all with display:inline-block, behaves. Note that DIVs' customized dimensions.</p>
+  <p><img src="../imgs/display_inline_block.png" width="300" alt=""></p>
+
+</div>
+</main>
