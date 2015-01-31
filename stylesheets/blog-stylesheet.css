@@ -55,3 +55,14 @@ code {
   color: #3da1bf;
   margin: 10px 0 10px 0;
 }
+
+/* <---- Misc  ----> */
+
+.bold-text {
+  font-weight: bold;
+}
+
+.hr {
+  width: 100%;
+  border-bottom: 1px solid #888;
+}
