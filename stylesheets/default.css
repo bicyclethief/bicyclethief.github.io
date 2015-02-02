@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background: #F2AD00;
+  background: #3B9AB2;
   height: 75px;
 
   display: flex;
@@ -26,7 +26,7 @@ header {
 }
 
 footer {
-  background: #caccce;
+  background: #cecece;
   height: 70px;
 
   display: flex;
@@ -46,7 +46,7 @@ footer {
 }
 
 .name-logo a {
-  color: #FF0000;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -104,8 +104,8 @@ a.twitter {
 }
 
 a.linkedin {
-  /* Linked-In colors: #0077b5, #fff */
-  color: #caccce;
+  /* Linked-In colors: #0077b5, #fff, #caccce */
+  color: #fff;
   background: #0077b5;
   text-decoration: none;
 }
