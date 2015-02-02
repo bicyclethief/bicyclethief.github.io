@@ -1,0 +1,89 @@
+header {
+  background: #fff;
+}
+
+.site-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #EEEFF0;
+  color: #303030;
+}
+
+footer {
+  background: #EEEFF0;
+}
+
+.homepage-content {
+  /*background: lightblue;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-logo a {
+  color: #9C9C9C;
+}
+
+.name {
+  color: #000;
+  font-family: 'Lato', sans-serif;
+  font-size: 40px;
+  padding: 0.25em;
+}
+
+.social-media-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0.25em;
+}
+
+.social-media-icon-wrapper {
+  padding: 2em;
+}
+
+.footer-social-media-wrapper {
+  display: none;
+}
+
+.circle {
+  /*background: lightblue;*/
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.twitter {
+  color: white;
+  background: #9C9C9C;
+  text-decoration: none;
+}
+
+a.twitter:hover {
+  background: #4099ff;
+}
+
+a.linkedin {
+  color: white;
+  background: #9c9c9c;
+  text-decoration: none;
+}
+
+a.linkedin:hover {
+  background: #0077b5;
+}
+
+a.github {
+  color: white;
+  background: #9c9c9c;
+  text-decoration: none;
+}
+
+a.github:hover {
+  background: #000;
+}
