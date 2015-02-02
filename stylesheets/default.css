@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background: #3B9AB2;
+  background: #cacaca;
   height: 75px;
 
   display: flex;
@@ -21,12 +21,12 @@ header {
 
 .site-content {
   flex: 1;
-  background: #EEEFF0;
+  background: #fff;
   color: #303030;
 }
 
 footer {
-  background: #cecece;
+  background: #cacaca;
   height: 70px;
 
   display: flex;
