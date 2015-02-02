@@ -12,6 +12,7 @@ header {
 }
 
 footer {
+  display: none;
   background: #EEEFF0;
 }
 
@@ -23,12 +24,24 @@ footer {
   align-items: center;
 }
 
+.homepage-bg-img {
+  background-image: url("../imgs/water-fish.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: relative;
+  /*z-index: -1;*/
+  width: 100%;
+  height: 100%;
+}
+
 .name-logo a {
   color: #9C9C9C;
 }
 
 .name {
-  color: #000;
+  color: #fff;
   font-family: 'Lato', sans-serif;
   font-size: 40px;
   padding: 0.25em;
@@ -45,7 +58,6 @@ footer {
 }
 
 .footer-social-media-wrapper {
-  display: none;
 }
 
 .circle {
@@ -61,6 +73,7 @@ footer {
 a.twitter {
   color: white;
   background: #9C9C9C;
+  /*background: #4099ff;*/
   text-decoration: none;
 }
 
@@ -71,6 +84,7 @@ a.twitter:hover {
 a.linkedin {
   color: white;
   background: #9c9c9c;
+  /*background: #0077b5;*/
   text-decoration: none;
 }
 
@@ -81,6 +95,7 @@ a.linkedin:hover {
 a.github {
   color: white;
   background: #9c9c9c;
+  /*background: #000;*/
   text-decoration: none;
 }
 

@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background: #ABDDDE;
+  background: #F2AD00;
   height: 75px;
 
   display: flex;
@@ -46,7 +46,7 @@ footer {
 }
 
 .name-logo a {
-  color: #C93312;
+  color: #FF0000;
   text-decoration: none;
 }
 
