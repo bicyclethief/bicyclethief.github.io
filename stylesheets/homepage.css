@@ -25,13 +25,12 @@ footer {
 }
 
 .homepage-bg-img {
-  background-image: url("../imgs/water-fish.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-background-size: cover;
-  background-size: cover;
-  position: relative;
-  /*z-index: -1;*/
+  /*background-image: url("../imgs/water-fish.jpg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
+  /*-webkit-background-size: cover;*/
+  /*background-size: cover;*/
+  /*position: relative;*/
   width: 100%;
   height: 100%;
 }
@@ -41,7 +40,7 @@ footer {
 }
 
 .name {
-  color: #fff;
+  color: #303030;
   font-family: 'Lato', sans-serif;
   font-size: 40px;
   padding: 0.25em;
