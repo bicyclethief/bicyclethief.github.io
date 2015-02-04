@@ -1,0 +1,12 @@
+
+.gist {
+  padding: 20px;
+}
+
+.gist .gist-meta {
+  display: none; /* hide footer */
+}
+
+.gist .line {
+  font-size: 16px; /* set font size of code */
+}
