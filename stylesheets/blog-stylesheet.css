@@ -11,6 +11,7 @@
   /*background: lightblue;*/
   margin: 60px 200px 60px 100px;
   font-family: 'Open Sans', san-serif;
+  font-size: 16px;
 }
 
 .post-title {
@@ -42,6 +43,13 @@ a {
   /*background: tomato;*/
   padding: 90px 0 20px 20px;
   border-left: 1px dotted #303030;
+}
+
+pre {
+  padding-top: 20px;
+  background: #F7F7F7;
+  color: #333;
+  font-size: 16px;
 }
 
 /* <!-- begin post index ------ > */

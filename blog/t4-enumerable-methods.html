@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../stylesheets/default.css">
+  <link rel="stylesheet" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <title>VQB</title>
+  <style>
+    img {
+      float: right;
+      padding-left: 30px;
+      padding-bottom: 25px;
+    }
+  </style>
+</head>
+<body class="site">
+    <header>
+      <div class="name-logo"><a href="../index.html">VQB</a></div>
+      <ul class="navigation">
+        <li><a href="#">Projects</a></li> <li><a href="index.html">Blog</a></li>
+        <li><a href="mailto:bicyclethief@gmail.com">Contact</a></li>
+      </ul>
+    </header>
+    <main class="site-content">
+
+<div class="blog-post-wrapper">
+  <div class="post-title">
+    <h1>The Karate Kid of Ruby</h1>
+  </div>
+  <div class="post-subtitle">
+    <h2>Ruby Enumerable methods</h2>
+  </div>
+  <div class="post-date">
+    <h4>Feb 3 2015</h4>
+  </div>
+  <div class="post-content">
+
+    <p>
+    <img src="http://www.nataliekirchhoff.com/uploads/1/2/8/7/12876927/6259569.jpg" alt="">
+      Remember that training scene in The Karate Kid? No, not the one with Jaden Smith. (How dare you.) The 1984 original with Ralph Macchio. Mr. Miyagi takes Daniel-san outside to the parking lot of cars and tells him: First wash. Then wax: wax on, left hand, wax on, right hand. Daniel-san had to do this for each and every car in the lot.
+    </p>
+    <p>Next day, to the backyard deck with hand-held sanders: Right circle. Left circle. BREATHE IN, BREATHE OUT. Daniel-san had to do this for each and every wooden plank on the deck. </p>
+
+    <p>And finally, a day later, to the fence (both sides!) with a paintbrush: Wrist up. Wrist down. Up. Down. DON'T FORGET TO BREATHE. For every wooden board of the fence, Daniel-san did this.
+    <p>
+
+    <p>Thus was the Karate Kid's now-legendary training: a set of karate instructions, unbeknownst to Daniel-san, done for each and every object in a collection: cars in a parking lot, wooden planks of a backyard deck, and wooden boards of a fence.
+
+    <p>As you well know, after his training, Daniel-san goes on to win the tournament, got his leg swept, won the respect of his enemies, the heart of a girl, and the pride of his teacher-- with a crane kick or two thrown in there. That's the story we love, but there's a dirty secret that no one likes to talk about: Mr. Miyagi got Daniel-san to do a bunch of awesome stuff on his collection of things for free.</p>
+
+    <p>In Ruby, you are Mr. Miyagi and <code>Enumerable</code> is your Karate Kid. And you too can make <code>Enumerable</code> do a bunch of awesome stuff for you on your collection of things. Ruby's <code>Enumerable</code> methods will apply your set of instructions-- or block of code, in Ruby lingo-- to each object in your collection. Instead of the cars in a parking lot or wooden planks of a backyard deck or wooden boards of a fence, your collections will likely be the objects in an <code>Array</code> or <code>Hash</code>. And that's the simple conceptual idea behind Ruby's <code>Enumerable</code>.</p>
+
+    <p>Let's look at one specific method: <code>Enumerable#map</code>. I think of <code>map</code> as the transformational <code>Enumerable</code> method, capable of transforming each and every object in the collection. And as we've learned from the makeovers on <i>The Jenny Jones Show</i>, transformations can be powerful. For example, what if we had an array of a million numbers and wanted to add 7 to every one? A million numbers to increase is no joke. But with <code>Enumerable#map</code> it totally is! Below is an example of <code>Enumerable#map</code> in full effect:
+    </p>
+
+    <pre>
+      big_array = [2, 3, 5, 7, 10, 23, 5, 7, 2, 4, -1, 34, 0, 77]
+
+      big_array.map { |number| number + 7 }
+      => [9, 10, 12, 14, 17, 30, 12, 14, 9, 11, 6, 41, 7, 84]
+    </pre>
+
+    <p>Okay, that's not an array of a million numbers (that would make for a very long blog post). But the principle is the same: <code>Enumerable#map</code> would apply the instruction-- <code>number + 7</code>, in this case-- to each and every number in the array, whether it's fourteen as shown or a million. On any type of Ruby collection. However big your collection. No mercy! Let's see Daniel-san do that.</p>
+
+    <p>Your new All-Valley Karate Tournament Champion: <code>Enumerable</code>!</p>
+  </div>
+</div>
+
+
+    </main>
+    <footer>
+      <div class="footer-social-media-wrapper">
+        <a href="https://twitter.com/VinhDevBootcamp" class="icon-box twitter">
+          <i class="fa fa-twitter fa-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/profile/view?id=388999422" class="icon-box linkedin">
+          <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://github.com/bicyclethief" class="icon-box github">
+          <i class="fa fa-github fa-lg"></i>
+        </a>
+      </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
