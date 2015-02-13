@@ -22,20 +22,42 @@
 
 <div class="blog-post-wrapper">
   <div class="post-title">
-    <h1>Lorem ipsum dolor sit amet.</h1>
+    <h1>On Classes and Objects (in Ruby)</h1>
   </div>
   <div class="post-subtitle">
-    <h2>Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
+    <h2></h2>
   </div>
   <div class="post-date">
-    <h4>Jan 1 2015</h4>
+    <h4>Feb 12 2015</h4>
   </div>
   <div class="post-content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi debitis dolorem culpa praesentium, autem officia officiis ipsum. Praesentium dicta id debitis aliquid, voluptatem provident asperiores, dolore facilis tenetur quibusdam accusamus doloremque itaque, pariatur mollitia dolores. Nihil mollitia vitae assumenda sapiente delectus quibusdam? Quo, tenetur, odio. Asperiores aperiam laudantium sed, omnis libero quas inventore ipsum veniam nobis vel maxime dicta? Numquam, aliquid eius obcaecati repudiandae eos, explicabo atque ipsum ipsam vero, tenetur beatae dolor qui optio saepe vel est fuga quo, non porro odio dolores illum laudantium. Soluta excepturi commodi error, facilis fugiat odit minima officia accusamus magni asperiores quis provident?</p>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto tempora quo laboriosam at, nemo reprehenderit magnam numquam consequatur nisi possimus molestias rem odio dolorem pariatur commodi aperiam distinctio, nam maxime praesentium, aliquam quas. Nemo voluptates illum, aliquid perferendis magnam recusandae architecto aspernatur, sint autem, dolorum cupiditate sed amet velit rerum error laudantium impedit consectetur ad deserunt esse in. Atque tempore molestias voluptatem nisi officia, sit sint quidem natus quos facilis maiores omnis excepturi dolorem impedit fuga eius rem, explicabo doloribus accusamus. Eaque laudantium veniam recusandae mollitia temporibus maxime saepe odio. Nisi voluptas maiores ipsam obcaecati consequuntur illo inventore molestiae quis veritatis voluptatibus id placeat quasi, delectus nemo natus repudiandae sequi nostrum eveniet accusamus optio aliquid, recusandae sapiente, praesentium tempore ut. Maiores enim in nobis earum facere fugit similique minima natus voluptatibus mollitia reiciendis architecto odio maxime adipisci dolorum ex sit consequatur accusantium et aut porro id, quaerat. Ipsa magnam, tempora!</p>
+    <p>In programming, a class is a blueprint for objects. Objects are a conceptual way by which developers organize data and actions taken on that data. Why impose any order at all on a computer program? In practice, computer programs tend to evolve-- a lot. Existing features are tweaked and new features are added, constantly. Moreover, different programs might have some of the same functions; a developer shouldn't continually reinvent the wheel. So ideally code needs to be both highly adaptable to change and compartmentalized. That's where classes and objects come in. Let's start a class (blueprint) for one in Ruby:
+    </p>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi repudiandae iusto magnam sint. Recusandae nesciunt fugiat eaque assumenda, voluptatum atque quos voluptatem alias, non illo ipsa. Accusamus minus, consequatur obcaecati atque ducimus ad eius rerum reiciendis. Repellendus nostrum unde illum quaerat consequatur maiores voluptatem laudantium, quos molestiae necessitatibus ipsum doloribus possimus, quidem explicabo beatae ipsa amet? Iusto dolores, vitae maiores, veniam consequatur perferendis molestias maxime quos voluptate inventore facilis temporibus.</p>
+    <script src="https://gist.github.com/bicyclethief/0bde9567451e2530906d.js"></script>
+
+    <p>In the real world, all objects, alive or inanimate, can be said to have attributes and behavior. Let's focus on attributes first. Attributes are the characteristics or qualities of the object. For example, a rock could have the attributes of color, weight, volume. A cat can have the attributes of color, weight, gender, breed. In a class, instance variables-- signified with the @ to start variable names-- are the attributes of an object. As it stands, our Person class is an empty husk. Let's add some attributes to our Person by adding sensible instance variables. The <code>initialize</code> method is a method that's called when an object is first created, or instantiated. Naturally, that's a common place to give our instance variables (a Person's attributes in this case) their first values.</p>
+
+    <script src="https://gist.github.com/bicyclethief/28885d015ffef859e475.js"></script>
+
+    <p>This is our basic blue-print for a Person. Let's create an instance of a Person. Or several instances! In fact, we can create as many Person objects as we want. Already, you might see the power of classes and objects: we can create as many objects as we want, but the code to do so resides in a single, tidy, compartmentalized, meaningful area.</p>
+
+    <script src="https://gist.github.com/bicyclethief/dfcc7ee9bad6a523c7c5.js"></script>
+
+    <p>In the real world, objects not only have attributes but behaviors. For example, a rock's behaviors could be: sit and roll. A cat's behaviors could be: sit, purr, meow, knock over stuff. In a class, the instance methods are the behaviors of an object. Let's give our Person class a behavior with the instance method <code>introduce_self</code>:</p>
+
+    <script src="https://gist.github.com/bicyclethief/ad70ecbdc35870d973a0.js"></script>
+
+    <p>Let's recreate our Person objects (not shown), and ask each of them to <code>introduce_self</code>:</p>
+
+    <script src="https://gist.github.com/bicyclethief/bde31bed2f46b9e805cc.js"></script>
+
+    <p>All the Person objects introduced themselves appropriately! This showcases an important quality about objects of the same type: each object shares instance methods but acts on its own set instance variables data.</p>
+
+    <p>As demonstrated, any change to the Person class is a powerful ripple throughout all Person objects created thereafter. We don't have six sets of code for six different Person objects; instead, we have a single, generic template of code for all Person objects. It's highly reusable. And you can see how this lends to adaptability as a single, compartmentalized spot of code can command sweeping changes.</p>
+
+    <p>There is of course much, much more to Ruby classes (including the particulars of designing good vs poor ones), but hopefully this brief and basic introduction into Ruby classes and objects has been helpful.</p>
   </div>
 </div>
 
