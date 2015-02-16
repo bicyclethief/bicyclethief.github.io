@@ -85,15 +85,15 @@ footer {
 }
 
 .icon-box {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   margin: 0 30px 0 30px;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10%;
+  border-radius: 50%;
 }
 
 a.twitter {
