@@ -33,10 +33,10 @@
 
 <div class="blog-post-wrapper">
   <div class="post-title">
-    <h1>Blocks, Procs, and Lambdas</h1>
+    <h1>You're a Code Blockhead, Charlie Brown</h1>
   </div>
   <div class="post-subtitle">
-    <h2></h2>
+    <h2>Blocks, Procs, and Lambdas</h2>
   </div>
   <div class="post-date">
     <h4>Feb 18 2015</h4>
@@ -47,7 +47,9 @@
 
     <p>Pssssssss. Youse want to try a code block? Everybody's doing it.</p>
 
-    <p>Just kidding. You've <i>been</i> using code blocks. That's right: you're already a user. Everytime you've iterated an Array or Hash with <code>each</code>, everytime you've transformed an Array or Hash with <code>map</code>, everytime you've used an Enumerable, you have likely passed in your own code block. A code block comes in two forms:</p>
+    <p>Just kidding. You've <i>been</i> using code blocks. That's right: you're already a user. Everytime you've iterated over an Array or Hash with <code>each</code>, everytime you've transformed an Array or Hash with <code>map</code>, everytime you've used an Enumerable, you have likely passed in your own code block. You're a code blockhead, Charlie Brown.</p>
+
+    <p>A code block comes between two forms:</p>
 
     <p>
       <ol>
@@ -56,7 +58,7 @@
       </ol>
     </p>
 
-    <p>If your code block is a single line, the convention is to use curly braces; if it's more, use do... end. Here's an example of two equivalent code blocks in each style:</p>
+    <p>How do I know which form to use? The convention is if your code block is a single line, then use curly braces; if it's more, use do... end. Here's an example of two equivalent code blocks in each style:</p>
 
     <p>
       <div class="two-column-container">
@@ -66,25 +68,25 @@
       </div>
     </p>
 
-    <p>You may have spent a few sleepless nights wondering: What auto-magically stuffs my variable(s)-- <code>num</code>, in this case-- I create in my code blocks with values from the collection? Well lose sleep no longer for the mechanism behind it is: <code>yield</code>. In fact, we can roll our own Array#each method using this mechanism; let's call it Array#my_each (see below). Notice that the method iterates through the array as you think it would, and for each element, calls <code>yield</code>, <i>yielding</i> control over to your code block with parameter(s)-- the Array element, in this case-- that fills the variable(s) in your code block.</p>
+    <p>You may have spent a few sleepless nights wondering: What auto-magically stuffs my code block variables-- <code>num</code>, in this case-- with values from the collection? Well lose sleep no longer for the mechanism behind it is: <code>yield</code>. In fact, using this mechanism, we can roll our own Array#each. Let's call ours Array#my_each (see below). Notice that the method iterates through the array as we knew something had to. And for each element, it calls <code>yield</code>, <i>yielding</i> control over to your code block, and passing parameters-- the Array element, in this case-- that fills the variables in your code block. Mystery solved!</p>
 
     <p><script src="https://gist.github.com/bicyclethief/b310935593adbfaafc13.js"></script></p>
 
-    <p>Fun fact: believe it or not, not everything in Ruby is an object. Heresy! Code blocks are actually one of those exceptions. Code blocks are not objects! And because it's not an object, we can't save one to a variable. Oy vey! What if I have redundant code blocks in my code? How do I stay D.R.Y.??</p>
+    <p>Fun fact: not everything in Ruby is an object. Heresy! Code blocks are actually one of those exceptions. Code blocks are not objects! I don't know what to believe in anymore. And because it's not an object, we can't save a code block to a variable. Oy vey! What if I have redundant code blocks in my code? How do I stay <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>??</p>
 
     <p>Enter: Procs and lambdas.</p>
 
-    <p>Let's start with Procs first. Procs are short for Procedures. Think of a proc as a "saved" block. Below, we create a Proc object with the same code block seen in previous examples and assign it to the variable <code>add_one_proc</code>:</p>
+    <p>Let's start with Procs. Proc is short for Procedure. Unlike code blocks, procs are objects. Thus, we can save a proc to a variable. So we can think of a proc as a "saved" code block. Below, we create a Proc with the same code block as previously seen and assign it to the variable <code>add_one_proc</code>:</p>
 
     <p><script src="https://gist.github.com/bicyclethief/cfd8d741803afaf2bd13.js"></script></p>
 
-    <p>What's the deal with that ampersand sign? Oh that. <code>&</code> is used to convert a proc into a code block. That's it.</p>
+    <p>What's the deal with that ampersand sign? Oh that. We already know from experience that methods like .each, .map, and similar get passed a code block. <code>&</code> is used to convert a proc into a code block. That's it.</p>
 
-    <p>Circling back to lambdas. Lambdas are objects and can be thought of as "saved" code blocks as well. Below is an equivalent code block to the previous examples, except we're creating a lambda this time:
+    <p>Circling back to lambdas: lambdas are objects and can be thought of as "saved" code blocks as well. Below is an equivalent code block to the previous examples, except we're creating a lambda this time:
 
     <p><script src="https://gist.github.com/bicyclethief/a31737e94118467353f1.js"></script></p>
 
-    <p>As you can see, lambdas are very similar to procs. In fact, lambdas are in reality Proc objects themselves! There are some key differences though. I won't go into the specifics myself (see the Notes section below for notes I've gathered from other sites as well as the References links.). However, I will leave you with this useful way of thinking about them: a lambda is like an anonymous method-- it behaves like methods typically behave when called; procs on the other hand, are like pasted code snippets-- as if you pasted the code block directly into the method enclosing the proc.</p>
+    <p>As you can see, lambdas are very similar to procs. In fact, lambdas are in reality Proc objects themselves! There are some key differences though. I won't go into the specifics myself (see the Notes section below, as well as the References links). But a useful way of thinking about them: a lambda is like an anonymous method-- it behaves like methods typically behave when called; procs on the other hand, are like pasted code snippets-- as if you pasted the code block directly into the method enclosing the proc.</p>
 
     <p><img src="../imgs/1x1.png" alt="" height="50"></p>
 
