@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../stylesheets/default.css">
+  <link rel="stylesheet" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" href="../stylesheets/gist.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <title>VQB</title>
+  <style>
+    .two-column-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .vert-line {
+      background: #ccc;
+      width: 1px;
+    }
+  </style>
+</head>
+<body class="site">
+    <header>
+      <div class="name-logo"><a href="../index.html">VQB</a></div>
+      <ul class="navigation">
+        <li><a href="#">Projects</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="mailto:bicyclethief@gmail.com">Contact</a></li>
+      </ul>
+    </header>
+    <main class="site-content">
+
+<div class="blog-post-wrapper">
+  <div class="post-title">
+    <h1>Blocks, Procs, and Lambdas</h1>
+  </div>
+  <div class="post-subtitle">
+    <h2></h2>
+  </div>
+  <div class="post-date">
+    <h4>Feb 18 2015</h4>
+  </div>
+  <div class="post-content">
+
+    <p><img src="../imgs/1x1.png" alt="" height="1"></p>
+
+    <p>Pssssssss. Youse want to try a code block? Everybody's doing it.</p>
+
+    <p>Just kidding. You've <i>been</i> using code blocks. That's right: you're already a user. Everytime you've iterated an Array or Hash with <code>each</code>, everytime you've transformed an Array or Hash with <code>map</code>, everytime you've used an Enumerable, you have likely passed in your own code block. A code block comes in two forms:</p>
+
+    <p>
+      <ol>
+        <li>curly braces: { }</li>
+        <li>do... end</li>
+      </ol>
+    </p>
+
+    <p>If your code block is a single line, the convention is to use curly braces; if it's more, use do... end. Here's an example of two equivalent code blocks in each style:</p>
+
+    <p>
+      <div class="two-column-container">
+        <div><script src="https://gist.github.com/bicyclethief/7215a95236fb8cbcdfc9.js"></script></div>
+        <div class="vert-line"></div>
+        <div><script src="https://gist.github.com/bicyclethief/288ffba7e05606c064d5.js"></script></div>
+      </div>
+    </p>
+
+    <p>You may have spent a few sleepless nights wondering: What auto-magically stuffs my variable(s)-- <code>num</code>, in this case-- I create in my code blocks with values from the collection? Well lose sleep no longer for the mechanism behind it is: <code>yield</code>. In fact, we can roll our own Array#each method using this mechanism; let's call it Array#my_each (see below). Notice that the method iterates through the array as you think it would, and for each element, calls <code>yield</code>, <i>yielding</i> control over to your code block with parameter(s)-- the Array element, in this case-- that fills the variable(s) in your code block.</p>
+
+    <p><script src="https://gist.github.com/bicyclethief/b310935593adbfaafc13.js"></script></p>
+
+    <p>Fun fact: believe it or not, not everything in Ruby is an object. Heresy! Code blocks are actually one of those exceptions. Code blocks are not objects! And because it's not an object, we can't save one to a variable. Oy vey! What if I have redundant code blocks in my code? How do I stay D.R.Y.??</p>
+
+    <p>Enter: Procs and lambdas.</p>
+
+    <p>Let's start with Procs first. Procs are short for Procedures. Think of a proc as a "saved" block. Below, we create a Proc object with the same code block seen in previous examples and assign it to the variable <code>add_one_proc</code>:</p>
+
+    <p><script src="https://gist.github.com/bicyclethief/cfd8d741803afaf2bd13.js"></script></p>
+
+    <p>What's the deal with that ampersand sign? Oh that. <code>&</code> is used to convert a proc into a code block. That's it.</p>
+
+    <p>Circling back to lambdas. Lambdas are objects and can be thought of as "saved" code blocks as well. Below is an equivalent code block to the previous examples, except we're creating a lambda this time:
+
+    <p><script src="https://gist.github.com/bicyclethief/a31737e94118467353f1.js"></script></p>
+
+    <p>As you can see, lambdas are very similar to procs. In fact, lambdas are in reality Proc objects themselves! There are some key differences though. I won't go into the specifics myself (see the Notes section below for notes I've gathered from other sites as well as the References links.). However, I will leave you with this useful way of thinking about them: a lambda is like an anonymous method-- it behaves like methods typically behave when called; procs on the other hand, are like pasted code snippets-- as if you pasted the code block directly into the method enclosing the proc.</p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="50"></p>
+
+    <p><div class="hr"></div></p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="20"></p>
+
+    <p><span class="bold-text">Notes:</span></p>
+
+    <p>
+      <pre><code>
+      1) A block is just a bit of code between do..end or {}.
+      It's not an object on its own, but it can be passed to methods like .each or .select.
+
+      2) A proc is a saved block we can use over and over. (short for Procedure)
+
+      3) A lambda is just like a proc, only it cares about the number of arguments it gets
+      and it returns to its calling method rather than returning immediately.
+
+      Src: http://www.codecademy.com/courses/ruby-beginner-en-L3ZCI/2/5
+      </code></pre>
+    </p>
+
+    <p>
+      <pre><code>
+      Differences between Blocks and Procs:
+
+      1. Procs are objects, blocks are not
+
+      2. At most one block can apear in an argument list
+
+
+      Differences between Procs and Lambdas:
+
+      1. Lambdas check the number of arguments, while procs do not
+
+      2. Lambdas and procs treat the ‘return’ keyword differently
+
+      Src: http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/
+      </code></pre>
+    </p>
+
+    <p>
+      <pre><code>
+      A lambda gives you more flexibility with what it returns (like if you want to return
+      multiple values at once) because you can safely use the explicit return statement inside
+      of one. With lambdas, return will only return from the lambda itself and not the
+      enclosing method, which is what happens if you use return inside a block or Proc.
+
+      Lambdas are also much stricter than Procs about you passing them the correct number of
+      arguments (you'll get an error if you pass the wrong number).
+
+      Src: http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures
+      </code></pre>
+    </p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="50"></p>
+
+    <p><div class="hr"></div></p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="20"></p>
+
+    <p>
+      <span class="bold-text">References:</span>
+      <ul>
+        <li><a href="http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/">What Is the Difference Between a Block, a Proc, and a Lambda in Ruby?</a>, Adam Waxman</li>
+        <li><a href="http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/">Understanding Ruby Blocks, Procs and Lambdas</a>, Reactive.IO</li>
+        <li><a href="http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures">Ruby Explained: Blocks, Procs, and Lambdas, aka "Closures"</a>, Erik Trautman</li>
+        <li><a href="http://www.codecademy.com/courses/ruby-beginner-en-L3ZCI/0/1?curriculum_id=5059f8619189a5000201fbcb">Blocks, Procs, & Lambdas</a>, Codecademy</li>
+        <li><a href="http://rubymonk.com/learning/books/4-ruby-primer-ascent/chapters/18-blocks/lessons/64-blocks-procs-lambdas">Blocks, Procs, and Lambdas</a>, RubyMonk</li>
+      </ul>
+    </p>
+
+  </div>
+</div>
+
+
+    </main>
+    <footer>
+      <div class="footer-social-media-wrapper">
+        <a href="https://twitter.com/VinhDevBootcamp" class="icon-box twitter">
+          <i class="fa fa-twitter fa-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/profile/view?id=388999422" class="icon-box linkedin">
+          <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://github.com/bicyclethief" class="icon-box github">
+          <i class="fa fa-github fa-lg"></i>
+        </a>
+      </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
