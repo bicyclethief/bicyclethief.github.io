@@ -18,6 +18,14 @@
       background: #ccc;
       width: 1px;
     }
+
+    .notes {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px 50px 10px 50px;
+      background: #f8f8f8;
+      word-wrap: break-word;
+    }
   </style>
 </head>
 <body class="site">
@@ -96,52 +104,46 @@
 
     <p><span class="bold-text">Notes:</span></p>
 
-    <p>
-      <pre><code>
-      1) A block is just a bit of code between do..end or {}.
-      It's not an object on its own, but it can be passed to methods like .each or .select.
+    <div class="notes">
+      <p>1) A block is just a bit of code between do..end or {}. It's not an object on its own, but it can be passed to methods like .each or .select.</p>
 
-      2) A proc is a saved block we can use over and over. (short for Procedure)
+      <p>2) A proc is a saved block we can use over and over. (short for Procedure)</p>
 
-      3) A lambda is just like a proc, only it cares about the number of arguments it gets
-      and it returns to its calling method rather than returning immediately.
+      <p>3) A lambda is just like a proc, only it cares about the number of arguments it gets
+      and it returns to its calling method rather than returning immediately.</p>
 
-      Src: http://www.codecademy.com/courses/ruby-beginner-en-L3ZCI/2/5
+      <p>Src: http://www.codecademy.com/courses/ruby-beginner-en-L3ZCI/2/5</p>
+    </div>
+
+    <div class="notes">
+      <p><u>Differences between Blocks and Procs</u></p>
+
+      <p>1. Procs are objects, blocks are not</p>
+
+      <p>2. At most one block can apear in an argument list</p>
+
+
+      <p><u>Differences between Procs and Lambdas</u></p>
+
+      <p>1. Lambdas check the number of arguments, while procs do not</p>
+
+      <p>2. Lambdas and procs treat the ‘return’ keyword differently</p>
+
+      <p>Src: http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/</p>
       </code></pre>
-    </p>
+    </div>
 
-    <p>
-      <pre><code>
-      Differences between Blocks and Procs:
-
-      1. Procs are objects, blocks are not
-
-      2. At most one block can apear in an argument list
-
-
-      Differences between Procs and Lambdas:
-
-      1. Lambdas check the number of arguments, while procs do not
-
-      2. Lambdas and procs treat the ‘return’ keyword differently
-
-      Src: http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/
-      </code></pre>
-    </p>
-
-    <p>
-      <pre><code>
-      A lambda gives you more flexibility with what it returns (like if you want to return
+    <div class="notes">
+      <p>A lambda gives you more flexibility with what it returns (like if you want to return
       multiple values at once) because you can safely use the explicit return statement inside
       of one. With lambdas, return will only return from the lambda itself and not the
-      enclosing method, which is what happens if you use return inside a block or Proc.
+      enclosing method, which is what happens if you use return inside a block or Proc.</p>
 
-      Lambdas are also much stricter than Procs about you passing them the correct number of
-      arguments (you'll get an error if you pass the wrong number).
+      <p>Lambdas are also much stricter than Procs about you passing them the correct number of
+      arguments (you'll get an error if you pass the wrong number).</p>
 
-      Src: http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures
-      </code></pre>
-    </p>
+      <p>Src: http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures</p>
+    </div>
 
     <p><img src="../imgs/1x1.png" alt="" height="50"></p>
 
