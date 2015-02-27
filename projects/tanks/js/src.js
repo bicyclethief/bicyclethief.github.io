@@ -3,6 +3,7 @@ var Game = {
   pixelsPerMove: 2,
   backgroundColor: "#aaaaaa",
   isOver: true,
+  restart: false,
   animationFrames: [1, 2, 3, 4, 5, 6, 7, 8],
   explosionFrames: [1, 2, 3],
   maxWidth: null,
@@ -41,7 +42,8 @@ KEYS = {
   up: [38],
   down: [40],
   left: [37],
-  right: [39]
+  right: [39],
+  spacebar: [32]
 };
 
 function eventSheetLoaded() {
@@ -59,6 +61,7 @@ function getRandomInt(min, max) {
 //-----------------
 Game.start = function() {
   this.isOver = false;
+  this.restart = false;
   this.maxWidth = canvas.width - 32;
   this.maxHeight = canvas.height - 32;
   this.drawBackground();
@@ -77,6 +80,8 @@ Game.drawGameOver = function() {
   context.font = (canvas.height / 15) + 'px sans-serif';
   context.textAlign = 'center';
   context.fillText('GAME OVER', canvas.width/2, canvas.height/2);
+  context.font = (canvas.height / 25) + 'px sans-serif';
+  context.fillText('(Press spacebar to play again)', canvas.width/2, canvas.height/2 + 40);
 };
 
 Game.drawBackground = function() {
@@ -148,6 +153,9 @@ Game.handleKeyDown = function(e) {
   var lastKey = KEYS.getKey(e.keyCode);
   if (['up', 'down', 'left', 'right'].indexOf(lastKey) >= 0) {
     Game.player.current_direction = lastKey;
+  }
+  else if (lastKey == 'spacebar') {
+    Game.restart = true;
   }
 };
 
@@ -351,6 +359,8 @@ Game.loop = function() {
   else {
     Game.drawExplosion(Game.player);
     Game.drawGameOver();
+    if (Game.restart)
+      Game.start();
   }
   Game.drawScore(Game.player);
 };
