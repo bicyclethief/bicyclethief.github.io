@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../stylesheets/default.css">
+  <link rel="stylesheet" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" href="../stylesheets/gist.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <title>VQB</title>
+</head>
+<body class="site">
+    <header>
+      <div class="name-logo"><a href="../index.html">VQB</a></div>
+      <ul class="navigation">
+        <li><a href="#">Projects</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="mailto:bicyclethief@gmail.com">Contact</a></li>
+      </ul>
+    </header>
+    <main class="site-content">
+
+<div class="blog-post-wrapper">
+  <div class="post-title">
+    <h1>Object Creation and Instantiation in Ruby vs. JavaScript</h1>
+  </div>
+  <div class="post-subtitle">
+    <h2></h2>
+  </div>
+  <div class="post-date">
+    <h4>Feb 27 2015</h4>
+  </div>
+  <div class="post-content">
+    <p>In Ruby, we create an object using the <code>class</code>-statement. An example of creating a Person object in Ruby is shown below. (Remember that this is only creating the "blue-print" for an object, which is separate from creating an <i>instance</i> of an object.)</p>
+
+    <script src="https://gist.github.com/bicyclethief/7b212e777f1778ed3c6f.js"></script>
+
+    <p>In JavaScript, there is no <code>class</code>-statement. But there is not one but two ways to create a JavaScript object: Literal notation (below left) and Constructor function (below right). For the Constructor method, you have the option of two syntax styles. Below is the equivalent JavaScript (not quite for the Literal notation) to the Ruby object created above:</p>
+
+    <p>
+      <div class="flex-row-space-around-container">
+        <div>
+          <span class="example-desc">LITERAL NOTATION</span>
+          <script src="https://gist.github.com/bicyclethief/9787572a932256349e8c.js"></script>
+        </div>
+        <div class="vert-line"></div>
+        <div class="flex-column-container">
+          <span class="example-desc">CONSTRUCTOR FUNCTION, SYNTAX 1</span>
+          <script src="https://gist.github.com/bicyclethief/c31e2698f2f5dc4c9c9a.js"></script>
+          <span class="example-desc">CONSTRUCTOR FUNCTION, SYNTAX 2</span>
+          <script src="https://gist.github.com/bicyclethief/b4e73449ebe2306d6fd0.js"></script>
+        </div>
+      </div>
+    </p>
+
+    <p>JavaScript syntax looks strange having come from Ruby, right? The Literal notation looks not unlike a Ruby <code>Hash</code>. The Constructor function syntax is equally wierd: it looks like a function being assigned to a variable, not creating an object. Perhaps a helpful way to think about the Constructor function syntax is this: those aren't any ol' functions being assigned to a variable name. Those are constructors! The JavaScript equivalent of <code>def initialize</code> from Ruby. And we all know constructors mean constructing an object.</p>
+
+    <p>Now let's instantiate our Person object in Ruby. And with that instance, call its method to say hello. The code would look like this:</p>
+
+    <p>
+      <span class="example-desc">RUBY OBJECT INSTANTIATION AND METHOD CALL</span>
+      <script src="https://gist.github.com/bicyclethief/d68993ec1de8d5f6eb62.js"></script>
+    </p>
+
+    <p>And now to instantiate our Person object in JavaScript for both Literal notation and Constructor function, and call the instance method to say hello:</p>
+
+    <p>
+      <div class="flex-row-space-around-container">
+        <div>
+          <span class="example-desc">LITERAL OBJECT INSTANTIATION AND METHOD CALL</span>
+          <script src="https://gist.github.com/bicyclethief/5dedc1b7411f76f4ad50.js"></script>
+        </div>
+        <div class="vert-line"></div>
+        <div>
+          <span class="example-desc">CONSTRUCTOR FUNCTION OBJECT INSTANTIATION AND METHOD CALL</span>
+          <script src="https://gist.github.com/bicyclethief/417e31ce7e93a15ca1c0.js"></script>
+        </div>
+      </div>
+    </p>
+
+    <p>Wait. Why does creating a Literal object instance look just like the code to create the "blue-print" for a Literal object?? Aha! That's because for JavaScript Object Literals, creating an object (it's "blue-print") and its instance are done together and simultaneously! There is no separation. (That's the reason why in the above <span class="example-desc">LITERAL NOTATION</span> example, the firstName property suspiciously didn't get any value.) A Object Literal has one and only one instance ever, whereas a Constructor function object can instantiate an unlimited number of instances. That is the key difference between the two ways to create an object in JavaScript. (Technically, there's a third way using <code>Object.create()</code>, but we won't go there.)</p>
+
+    <p>You might wonder: If there are two ways in JavaScript to create an object, how do I know which one to use? The Literal notation or the Constructor function? This <a href="http://code.tutsplus.com/tutorials/the-basics-of-object-oriented-javascript--net-7670" target="_blank">article</a> suggests the following guidelines:</p>
+
+    <blockquote cite="http://code.tutsplus.com/tutorials/the-basics-of-object-oriented-javascript--net-7670">Literal is a preferred option for name spacing so that your JavaScript code doesn't interfere (or vice versa) with other scripts running on the page and also if you are using this object as a single object and not requiring more than one instance of the object, whereas Constructor function type notation is preferred if you need to do some initial work before the object is created or require multiple instances of the object where each instance can be changed during the lifetime of the script.</blockquote>
+
+    <p><img src="../imgs/1x1.png" alt="" height="50"></p>
+
+    <p><div class="hr"></div></p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="20"></p>
+
+    <p>
+      <span class="bold-text">References:</span>
+      <ul>
+        <li><a href="http://code.tutsplus.com/tutorials/the-basics-of-object-oriented-javascript--net-7670" target="_blank">The Basics of Object-Oriented JavaScript</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript" target="_blank">Introduction to Object-Oriented JavaScript</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects" target="_blank">Working with objects</a></li>
+        <li><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank">JavaScript Garden: Intro</a></li>
+        <li><a href="http://phrogz.net/JS/classes/OOPinJS.html" target="_blank">OOP in JS, Part 1 : Public/Private Variables and Methods</a></li>
+      </ul>
+    </p>
+
+  </div>
+</div>
+
+
+    </main>
+    <footer>
+      <div class="footer-social-media-wrapper">
+        <a href="https://twitter.com/VinhDevBootcamp" class="icon-box twitter">
+          <i class="fa fa-twitter fa-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/profile/view?id=388999422" class="icon-box linkedin">
+          <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://github.com/bicyclethief" class="icon-box github">
+          <i class="fa fa-github fa-lg"></i>
+        </a>
+      </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+

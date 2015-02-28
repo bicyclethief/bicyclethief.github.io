@@ -56,7 +56,28 @@ pre {
   font-weight: bold;
 }
 
-/* <!-- begin post index ------ > */
+.example-desc {
+  color: #999;
+  font-size: 0.75em;
+}
+
+.vert-line {
+  background: #ccc;
+  width: 1px;
+}
+
+.flex-row-space-around-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* <!-- for blog post index page ------ > */
 
 .post-index-container {
   margin-top: 90px;
@@ -75,7 +96,7 @@ pre {
 
 .post-index-body {
   /*background: lightblue;*/
-  padding: 20px 0px 0px 25px;
+  padding: 20px 0 0 25px;
 }
 
 .post-index-body li {
@@ -87,5 +108,3 @@ pre {
 .post-index-body a {
   /*background: lightblue;*/
 }
-
-/* <!-- end post index ------ > */
