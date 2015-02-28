@@ -88,7 +88,8 @@
     instance are done together and simultaneously! There is no separation.
     (That's the reason why in the above <span class="example-desc">LITERAL
     NOTATION</span> example, the firstName property suspiciously didn't get any
-  value.) An Object Literal has one and only one instance ever, whereas a Constructor function object can instantiate an unlimited number of instances. That is the key difference between the two ways to create an object in JavaScript. (Technically, there's a third way using <code>Object.create()</code>, but we won't go there.)</p>
+  value.) There's a catch: an Object Literal has one and only one instance ever.
+  By contrast, a Constructor function object can instantiate an unlimited number of instances. That is the key difference between the two ways to create an object in JavaScript. (Technically, there's a third way using <code>Object.create()</code>, but we won't go there.)</p>
 
     <p>You might wonder: If there are two ways in JavaScript to create an object, how do I know which one to use? The Literal notation or the Constructor function? This <a href="http://code.tutsplus.com/tutorials/the-basics-of-object-oriented-javascript--net-7670" target="_blank">article</a> suggests the following guidelines:</p>
 
