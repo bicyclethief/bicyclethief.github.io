@@ -2,8 +2,8 @@
 var Game = {
   pixelsPerMove: 2,
   backgroundColor: "#aaaaaa",
-  isOver: true,
-  restart: false,
+  isOver: true,  // flag that signals to draw explosion and game over text
+  isSleep: true, // flag to stop drawing completely
   animationFrames: [1, 2, 3, 4, 5, 6, 7, 8],
   explosionFrames: [1, 2, 3],
   maxWidth: null,
@@ -29,7 +29,7 @@ Game.enemy = {
 Game.bullet = {
   x: null,
   y: null,
-  points: 10
+  pointsValue: 10
 };
 
 // sprite sheet
@@ -38,17 +38,11 @@ Game.tileSheet.src = "images/tanks_sheet.png";
 // don't start game until sprite sheet is loaded
 Game.tileSheet.addEventListener('load', eventSheetLoaded, false);
 
-KEYS = {
-  up: [38],
-  down: [40],
-  left: [37],
-  right: [39],
-  spacebar: [32]
-};
-
 function eventSheetLoaded() {
+  // Global variables
   canvas = document.getElementById("canvas");
   context = canvas.getContext("2d");
+
   Game.start();
 }
 
@@ -60,11 +54,10 @@ function getRandomInt(min, max) {
 // Game methods
 //-----------------
 Game.start = function() {
+  this.wake();
   this.isOver = false;
-  this.restart = false;
   this.maxWidth = canvas.width - 32;
   this.maxHeight = canvas.height - 32;
-  this.drawBackground();
   this.player.setup();
   this.enemy.setup();
   this.bullet.setup();
@@ -73,6 +66,14 @@ Game.start = function() {
 
 Game.stop = function() {
   this.isOver = true;
+};
+
+Game.sleep = function() {
+  this.isSleep = true;
+};
+
+Game.wake = function() {
+  this.isSleep = false;
 };
 
 Game.drawGameOver = function() {
@@ -89,16 +90,9 @@ Game.drawBackground = function() {
   context.fillRect(0, 0, 600, 400);
 };
 
-Game.draw = function() {
-  this.drawBackground();
-  this.bullet.draw();
-  this.player.draw();
-  this.enemy.draw();
-};
-
-Game.isCollision = function() {
-  if ((this.player.x >= Game.enemy.x-25) && (this.player.x <= Game.enemy.x+25) &&
-      (this.player.y >= Game.enemy.y-25) && (this.player.y <= Game.enemy.y+25)) {
+Game.isCollision = function(object1, object2, widthPad, heightPad) {
+  if ((object1.x >= object2.x-widthPad) && (object1.x <= object2.x+widthPad) &&
+      (object1.y >= object2.y-heightPad) && (object1.y <= object2.y+heightPad)) {
     return true;
   }
   else {
@@ -106,15 +100,30 @@ Game.isCollision = function() {
   }
 };
 
-Game.update = function() {
-  Game.player.move();
-  Game.enemy.move();
-  if (Game.isCollision()) {
-    Game.stop();
+Game.draw = function() {
+  if (Game.isOver) {
+    this.drawExplosion(Game.player);
+    this.drawGameOver();
+    this.sleep();
   }
-  else if (Game.player.onBullet()) {
-    Game.player.score += Game.bullet.points;
-    Game.bullet.place();
+  else {
+    this.drawBackground();
+    this.bullet.draw();
+    this.player.draw();
+    this.enemy.draw();
+    this.drawScore(Game.player);
+  }
+};
+
+Game.update = function() {
+  this.player.move();
+  this.enemy.move();
+  if (this.isCollision(this.player, this.enemy, 25, 25)) {
+    this.stop();
+  }
+  else if (Game.player.isOverObject(Game.bullet, 15, 20)) {
+    this.player.score += Game.bullet.pointsValue;
+    this.bullet.placeRandom();
   }
 };
 
@@ -149,13 +158,21 @@ Game.drawExplosion = function(object) {
     object.explosionIndex++;
 };
 
+KEYS = {
+  up: [38],
+  down: [40],
+  left: [37],
+  right: [39],
+  spacebar: [32]
+};
+
 Game.handleKeyDown = function(e) {
   var lastKey = KEYS.getKey(e.keyCode);
   if (['up', 'down', 'left', 'right'].indexOf(lastKey) >= 0) {
     Game.player.current_direction = lastKey;
   }
   else if (lastKey == 'spacebar') {
-    Game.restart = true;
+    Game.start();
   }
 };
 
@@ -194,10 +211,6 @@ Game.player.draw = function() {
   context.rotate(angleInRadians);
   var sourceX = Math.floor(Game.animationFrames[this.frameIndex] % 8) *32;
   var sourceY = Math.floor(Game.animationFrames[this.frameIndex] / 8) *32;
-
-  if (sourceX == 0 && sourceY == 32)
-    console.log("BLUE tank!!");
-
   context.drawImage(Game.tileSheet, sourceX, sourceY, 32, 32, -16, -16, 32, 32);
   context.restore();
 
@@ -207,9 +220,9 @@ Game.player.draw = function() {
   }
 };
 
-Game.player.onBullet = function() {
-  if ((this.x >= Game.bullet.x-15) && (this.x <= Game.bullet.x+15) &&
-      (this.y >= Game.bullet.y-20) && (this.y <= Game.bullet.y+20)) {
+Game.player.isOverObject = function(bullet, widthPad, heightPad) {
+  if ((this.x >= bullet.x-widthPad) && (this.x <= bullet.x+widthPad) &&
+      (this.y >= bullet.y-heightPad) && (this.y <= bullet.y+heightPad)) {
     return true;
   }
   else {
@@ -220,19 +233,19 @@ Game.player.onBullet = function() {
 Game.player.move = function() {
   switch(Game.player.current_direction) {
     case "up":
-      if (!Game.atWallTop(Game.player))
+      if (!Game.atWallTop(this))
         this.y -= Game.pixelsPerMove;
       break;
     case "right":
-      if (!Game.atWallRight(Game.player))
+      if (!Game.atWallRight(this))
         this.x += Game.pixelsPerMove;
       break;
     case "down":
-      if (!Game.atWallBottom(Game.player))
+      if (!Game.atWallBottom(this))
         this.y += Game.pixelsPerMove;
       break;
     case "left":
-      if (!Game.atWallLeft(Game.player))
+      if (!Game.atWallLeft(this))
         this.x -= Game.pixelsPerMove;
       break;
   }
@@ -324,10 +337,10 @@ Game.enemy.move = function() {
 // Game.bullet methods
 //-----------------------
 Game.bullet.setup = function() {
-  this.place();
+  this.placeRandom();
 };
 
-Game.bullet.place = function() {
+Game.bullet.placeRandom = function() {
   this.x = getRandomInt(1, Game.maxWidth);
   this.y = getRandomInt(1, Game.maxHeight);
 };
@@ -351,18 +364,13 @@ Object.prototype.getKey = function(value){
   return null;
 };
 
+
+
 Game.loop = function() {
-  if (!Game.isOver) {
+  if (!Game.isSleep) {
     Game.update();
     Game.draw();
   }
-  else {
-    Game.drawExplosion(Game.player);
-    Game.drawGameOver();
-    if (Game.restart)
-      Game.start();
-  }
-  Game.drawScore(Game.player);
 };
 
 window.setInterval(Game.loop, 100);
