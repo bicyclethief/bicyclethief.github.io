@@ -50,6 +50,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function drawText(text, font, color, align, x, y) {
+  context.fillStyle = color;
+  context.font = font;
+  context.textAlign = align;
+  context.fillText(text, x, y);
+}
+
 //-----------------
 // Game methods
 //-----------------
@@ -77,12 +84,21 @@ Game.wake = function() {
 };
 
 Game.drawGameOver = function() {
-  context.fillStyle = '#FFF';
-  context.font = (canvas.height / 15) + 'px sans-serif';
-  context.textAlign = 'center';
-  context.fillText('GAME OVER', canvas.width/2, canvas.height/2);
-  context.font = (canvas.height / 25) + 'px sans-serif';
-  context.fillText('(Press spacebar to play again)', canvas.width/2, canvas.height/2 + 40);
+// function drawText(text, font, color, align, x, y) {
+  var fontType = 'sans-serif';
+  var font = (canvas.height / 15) + 'px ' + fontType;
+  var color = '#FFF';
+  var align = 'center';
+  var x = canvas.width/2;
+  var y = canvas.height/2;
+
+  drawText('GAME OVER', font, color, align, x, y);
+
+  font = (canvas.height / 25) + 'px ' + fontType;
+  x = canvas.width/2;
+  y = canvas.height/2 + 40;
+
+  drawText('(Press spacebar to play again)', font, color, align, x, y);
 };
 
 Game.drawBackground = function() {
@@ -109,8 +125,8 @@ Game.draw = function() {
   else {
     this.drawBackground();
     this.bullet.draw();
-    this.player.draw();
-    this.enemy.draw();
+    this.drawFrame(this.player, 0);
+    this.drawFrame(this.enemy, 1);
     this.drawScore(Game.player);
   }
 };
@@ -126,6 +142,40 @@ Game.update = function() {
     this.bullet.placeRandom();
   }
 };
+
+Game.drawFrame = function(objectToDraw, rowMinimum) {
+  var rotation;
+  switch (objectToDraw.current_direction) {
+    case "up":
+      rotation = 0;
+      break;
+    case "right":
+      rotation = 90;
+      break;
+    case "down":
+      rotation = 180;
+      break;
+    case "left":
+      rotation = 270;
+      break;
+  }
+  context.save();
+  context.setTransform(1,0,0,1,0,0);
+  var angleInRadians = rotation * Math.PI / 180;
+  context.translate(objectToDraw.x + 16, objectToDraw.y + 16);
+  context.rotate(angleInRadians);
+  var sourceX = Math.floor(Game.animationFrames[objectToDraw.frameIndex] % 8) *32;
+  var sourceY = (Math.floor(Game.animationFrames[objectToDraw.frameIndex] / 8)+rowMinimum) *32;
+
+  context.drawImage(Game.tileSheet, sourceX, sourceY, 32, 32, -16, -16, 32, 32);
+  context.restore();
+
+  objectToDraw.frameIndex++;
+  if (objectToDraw.frameIndex == Game.animationFrames.length) {
+     objectToDraw.frameIndex = 0;
+  }
+};
+
 
 Game.drawScore = function (object) {
   context.fillStyle = '#FFF';
@@ -188,37 +238,7 @@ Game.player.setup = function() {
   this.score = 0;
 };
 
-Game.player.draw = function() {
-  var rotation;
-  switch (this.current_direction) {
-    case "up":
-      rotation = 0;
-      break;
-    case "right":
-      rotation = 90;
-      break;
-    case "down":
-      rotation = 180;
-      break;
-    case "left":
-      rotation = 270;
-      break;
-  }
-  context.save();
-  context.setTransform(1,0,0,1,0,0);
-  var angleInRadians = rotation * Math.PI / 180;
-  context.translate(this.x + 16, this.y + 16);
-  context.rotate(angleInRadians);
-  var sourceX = Math.floor(Game.animationFrames[this.frameIndex] % 8) *32;
-  var sourceY = Math.floor(Game.animationFrames[this.frameIndex] / 8) *32;
-  context.drawImage(Game.tileSheet, sourceX, sourceY, 32, 32, -16, -16, 32, 32);
-  context.restore();
 
-  this.frameIndex++;
-  if (this.frameIndex == Game.animationFrames.length) {
-     this.frameIndex = 0;
-  }
-};
 
 Game.player.isOverObject = function(bullet, widthPad, heightPad) {
   if ((this.x >= bullet.x-widthPad) && (this.x <= bullet.x+widthPad) &&
@@ -261,38 +281,7 @@ Game.enemy.setup = function() {
   this.frameIndex = 0;
 };
 
-Game.enemy.draw = function() {
-  var rotation;
-  switch (this.current_direction) {
-    case "up":
-      rotation = 0;
-      break;
-    case "right":
-      rotation = 90;
-      break;
-    case "down":
-      rotation = 180;
-      break;
-    case "left":
-      rotation = 270;
-      break;
-  }
-  context.save();
-  context.setTransform(1,0,0,1,0,0);
-  var angleInRadians = rotation * Math.PI / 180;
-  context.translate(this.x + 16, this.y + 16);
-  context.rotate(angleInRadians);
-  var sourceX = Math.floor(Game.animationFrames[this.frameIndex] % 8) *32;
-  var sourceY = (Math.floor(Game.animationFrames[this.frameIndex] / 8)+1) *32;
 
-  context.drawImage(Game.tileSheet, sourceX, sourceY, 32, 32, -16, -16, 32, 32);
-  context.restore();
-
-  this.frameIndex++;
-  if (this.frameIndex == Game.animationFrames.length) {
-     this.frameIndex = 0;
-  }
-};
 
 Game.enemy.move = function() {
   // stupid AI: 80% go in current direction, 20% close distance to player
