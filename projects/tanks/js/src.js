@@ -281,8 +281,6 @@ Game.enemy.setup = function() {
   this.frameIndex = 0;
 };
 
-
-
 Game.enemy.move = function() {
   // stupid AI: 80% go in current direction, 20% close distance to player
   var decision = getRandomInt(0, 100);
