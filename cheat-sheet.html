@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Ruby Enumerable Cheat Sheet</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../stylesheets/cheatsheet.css">
+  <link rel="stylesheet" href="stylesheets/cheatsheet.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -12,6 +13,7 @@
   <div class="row"><div class="col-md-12"><h5 class="text-center gray-text">(inspired by David Grayson's <a href="http://www.davidegrayson.com/ruby/enumerable/enumerable_methods.pdf">Ruby 1.9.3 Enumerable module quick reference</a>)</h1></div></div>
   <div class="row jump-to">
     <div class="col-md-12 text-center">
+      <a href="#" class="back-to-top">Back to Top</a>
       <strong>Jump To:</strong>
       <a href="#basic"><button type="submit" class="btn btn-primary">Basic Methods</button></a>
       <a href="#iteration"><button type="submit" class="btn btn-primary">Iteration</button></a>
@@ -643,5 +645,24 @@
   </div>
 
 </div>
+<script>
+jQuery(document).ready(function() {
+    var offset = 220;
+    var duration = 500;
+    jQuery(window).scroll(function() {
+        if (jQuery(this).scrollTop() > offset) {
+            jQuery('.back-to-top').fadeIn(duration);
+        } else {
+            jQuery('.back-to-top').fadeOut(duration);
+        }
+    });
+
+    jQuery('.back-to-top').click(function(event) {
+        event.preventDefault();
+        jQuery('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    })
+});
+</script>
 </body>
 </html>

@@ -1,25 +1,20 @@
 
-/* override gist CSS */
-
-.gist {
-  padding: 10px 0 0 0;
+.back-to-top {
+  position: fixed;
+  bottom: 2em;
+  left: 0;
+  text-decoration: none;
+  color: #000000;
+  background-color: rgba(235, 235, 235, 0.80);
+  font-size: 12px;
+  padding: 1em;
+  display: none;
+  z-index: 100;
 }
 
-.gist .gist-meta {
-  display: none; /* hide footer */
+.back-to-top:hover {
+  background-color: rgba(135, 135, 135, 0.50);
 }
-
-.gist .line {
-  font-size: 16px; /* set font size of code */
-                   /* needs to be same size as .line-number */
-}
-
-.gist .line-number {
-  font-size: 16px; /* set font size of line number */
-                   /* needs to be same size as .line */
-}
-
-/* ------------------------> */
 
 .jump-to {
   padding-bottom: 10px;
@@ -41,4 +36,24 @@ ul {
 
 .gray-text {
   color: #aaa;
+}
+
+/* override gist CSS */
+
+.gist {
+  padding: 10px 0 0 0;
+}
+
+.gist .gist-meta {
+  display: none; /* hide footer */
+}
+
+.gist .line {
+  font-size: 16px; /* set font size of code */
+                   /* needs to be same size as .line-number */
+}
+
+.gist .line-number {
+  font-size: 16px; /* set font size of line number */
+                   /* needs to be same size as .line */
 }
