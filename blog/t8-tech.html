@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../stylesheets/default.css">
+  <link rel="stylesheet" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" href="../stylesheets/gist.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <title>VQB</title>
+</head>
+<body class="site">
+    <header>
+      <div class="name-logo"><a href="../index.html">VQB</a></div>
+      <ul class="navigation">
+        <li><a href="#">Projects</a></li>
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="mailto:bicyclethief@gmail.com">Contact</a></li>
+      </ul>
+    </header>
+    <main class="site-content">
+
+<div class="blog-post-wrapper">
+  <div class="post-title">
+    <h1>Intro to Regular Expressions</h1>
+  </div>
+  <div class="post-subtitle">
+    <h2>Matching Regular Expressions in Ruby</h2>
+  </div>
+  <div class="post-date">
+    <h4>Mar 7 2015</h4>
+  </div>
+  <div class="post-content">
+    <p>Searching strings is a common task in programming. At one time or another, we've programmatically looked for a substring within another string. One plausible example is searching for "gmail" within an email address. But what if we want to validate an email address? A candidate for a valid <a href="http://en.wikipedia.org/wiki/Email_address">email address</a> must follow a certain strict pattern: a local part, an @ symbol, and then a domain. As valid email addresses vary widely-- from dictatortots12@yahoo.com to team.edward4evar@hotmail.com-- it's clear simple substring searches will not suffice. But a specific pattern laying out which characters are acceptable, in what particular order, and how many, can be used to validate complex, widely varying strings like email addresses.</p>
+
+    <p>Enter regular expressions, or regex for short. Regular expression is the language for defining such patterns. It's used for matching patterns extracting patterns from strings.</p>
+
+    <p>The following is a regular expression for a valid email address: <code>\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}\b</code>. If that looks like intimidating, cryptic gibberish to you, you're not alone. More than a few people find regular expressions esoteric. But like any other language, it may come in short, simple patterns, or long, intricate, and wildly complex ones. Someone new to English starts learning with simple patterns, not the prose of Nabakov. So too we'll begin with conceptually the simplest regular expression pattern: literal characters.</p>
+
+    <p>In Ruby (as well as other programming languages), two forward slashes denote a regular expression pattern. The <code>=~</code> operator in Ruby tests a pattern against a string. The example below tests the string "tidepools" for the literal character 'd':</p>
+
+    <p><script src="https://gist.github.com/bicyclethief/fd974b6f92de93ad66ce.js"></script></p>
+
+    <p>You might have guessed that the 2 return value is the position in the string where the pattern was found. Now let's see a non-matching pattern:</p>
+
+    <p><script src="https://gist.github.com/bicyclethief/ddb74907ef1b8cc89f49.js"></script></p>
+
+    <p><code>nil</code> is returned if the string does not match the regular expression pattern. Since a number has a boolean value of <code>true</code> and the Nil object in Ruby has a boolean value of <code>false</code>, we can branch control flow based whether a regular expression matches, like so:</p>
+
+    <p><script src="https://gist.github.com/bicyclethief/0c4a8d56af82e31de995.js"></script></p>
+
+    <p>The string "tangerine176@aol.com" was found to match the pattern <code>/aol/</code>-- meaning an 'a' directly followed by an 'o', directly followed by an 'l'.</p>
+
+    <p>Let's increase the flexibility of our patterns, which will begin to show the power of regular expressions. The <code>/[bB]at/</code> will match any string with "bat" or "Bat" in it. The bracket notation gives your regular expression choices: the pattern has the option to match <i>either</i> 'b' or 'B' characters.</p>
+
+    <p>To give our pattern even greater flexibility, we can even use a range of possibilities: <code>/[b-f]at/</code>. That pattern will match any string with the substrings "bat", "cat", "dat", or "eat" because the first character can now be the range of characters between 'b' to 'f'. (Yes, you can use a range of numbers as well!)</p>
+
+    <p>We can take flexibility further, but accepting any single character with the <code>.</code> pattern. The pattern <code>/.at/</code> will match any single character, followed directly by an 'a', followed directly by an 't'. Matching strings could be: "Rat", "5at", or "=at".</p>
+
+    <p>We can also control the "greediness" of our patterns using <i>quantifiers</i>:</p>
+    <p>
+      <ul>
+        <li>* (zero or more times)</li>
+        <li>+ (one or more times)</li>
+        <li>{n} (exactly <i>n</i> times)</li>
+        <li>{n,} (at least <i>n</i> times)</li>
+        <li>{n,m} (at least <i>n</i> times, but no more than <i>m</i> times)</li>
+      </ul>
+    </p>
+    <p><code>/[bB]+at/</code> will match one or more b's or B's, followed by an 'a' and 'b'. The following are strings that would match such a pattern: "bat", "Bat", "bbat", "bBat", "bbbat", "BbBat", "BBBBBBBBBBBBBBbat", and so on.</p>
+
+    <p>As you can see, regular expressions can cast an ever wider net, ensaring more strings of our choosing. Hopefully, this post has given you a glimpse of the power of regular expressions. See the References below to further investigate, or google for them. Being such a useful and powerful tool, the topic of regular expressions have numerous tutorials, articles, and associated tools on the internet.</p>
+
+  </div>
+
+  <div>
+    <p><img src="../imgs/1x1.png" alt="" height="50"></p>
+
+    <p><div class="hr"></div></p>
+
+    <p><img src="../imgs/1x1.png" alt="" height="20"></p>
+
+    <p>
+      <span class="bold-text">References:</span>
+      <ul>
+        <li><a href="http://stackoverflow.com/questions/4736/learning-regular-expressions" target="_blank">Learning Regular Expressions</a>, Stack Overflow</li>
+        <li><a href="http://regexone.com/" target="_blank">RegexOne</a></li>
+        <li><a href="http://www.codecademy.com/courses/javascript-intermediate-en-NJ7Lr/0/1" target="_blank">Regular Expression course</a>, Codecademy</li>
+        <li><a href="http://regexcrossword.com/" target="_blank">Regex Cross­word</a></li>
+        <li><a href="http://www.regexr.com/" target="_blank">RegExr v2.0</a></li>
+      </ul>
+    </p>
+  </div>
+
+</div>
+
+
+
+
+    </main>
+    <footer>
+      <div class="footer-social-media-wrapper">
+        <a href="https://twitter.com/VinhDevBootcamp" class="icon-box twitter">
+          <i class="fa fa-twitter fa-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/profile/view?id=388999422" class="icon-box linkedin">
+          <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://github.com/bicyclethief" class="icon-box github">
+          <i class="fa fa-github fa-lg"></i>
+        </a>
+      </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
