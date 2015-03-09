@@ -33,7 +33,7 @@
   <div class="post-content">
     <p>Searching strings is a common task in programming. At one time or another, we've programmatically looked for a substring within another string. One plausible example is searching for "gmail" within an email address. But what if we want to validate an email address? A candidate for a valid <a href="http://en.wikipedia.org/wiki/Email_address">email address</a> must follow a certain strict pattern: a local part, an @ symbol, and then a domain. As valid email addresses vary widely-- from dictatortots12@yahoo.com to team.edward4evar@hotmail.com-- it's clear simple substring searches will not suffice. But a specific pattern laying out which characters are acceptable, in what particular order, and how many, can be used to validate complex, widely varying strings like email addresses.</p>
 
-    <p>Enter regular expressions, or regex for short. Regular expression is the language for defining such patterns. It's used for matching patterns extracting patterns from strings.</p>
+    <p>Enter regular expressions, or regex for short. Regular expression is the language for defining such patterns. It's used for matching patterns and extracting patterns from strings.</p>
 
     <p>The following is a regular expression for a valid email address: <code>\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}\b</code>. If that looks like intimidating, cryptic gibberish to you, you're not alone. More than a few people find regular expressions esoteric. But like any other language, it may come in short, simple patterns, or long, intricate, and wildly complex ones. Someone new to English starts learning with simple patterns, not the prose of Nabakov. So too we'll begin with conceptually the simplest regular expression pattern: literal characters.</p>
 
