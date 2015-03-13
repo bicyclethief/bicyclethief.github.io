@@ -85,8 +85,8 @@ footer {
 }
 
 .icon-box {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   margin: 0 30px 0 30px;
 
   display: flex;
@@ -97,23 +97,31 @@ footer {
 }
 
 a.twitter {
-  /* Linked-In colors: #4099ff, #fff */
   color: #fff;
-  background: #4099ff;
+  background: #03b3ee;
   text-decoration: none;
+}
+
+a.twitter:hover {
+  background: #028dbc;
 }
 
 a.linkedin {
-  /* Linked-In colors: #0077b5, #fff, #caccce */
   color: #fff;
-  background: #0077b5;
+  background: #0071a1;
   text-decoration: none;
+}
+
+a.linkedin:hover {
+  background: #004d6e;
 }
 
 a.github {
-  /* GitHub colors: #000, #f5f5f5 */
   color: #ccc;
-  background: #000;
+  background: #767676;
   text-decoration: none;
 }
 
+a.github:hover {
+  background: #000;
+}
